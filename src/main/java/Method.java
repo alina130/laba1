@@ -1,14 +1,31 @@
-public class Method<T> {//класс методов
-
+/**
+ * класс методов
+ * @param <T> значение узла
+ */
+public class Method<T> {
+    /**
+     * список, узел node
+     */
     private Node<T> head;
+    /**
+     * размер списка
+     */
     private int size;
 
+    /**
+     * конструктор без параметров
+     */
     public Method() {
         head = null;
         size = 0;
     }
 
-    public void pushBack(T data) {//добавить в конец
+    /**
+     * добавить в конец
+     * @param data значение элемента списка
+     * @see Method#pushFront(Object)
+     */
+    public void pushBack(T data) {
         var h = head;
         var temp = new Node<>(data);
         temp.next = null;
@@ -23,14 +40,23 @@ public class Method<T> {//класс методов
         size++;//увеличиваем размер
     }
 
-    public void pushFront(T data) {//добавить в начало
+    /**
+     *добавить в начало
+     * @param data значение элемента списка
+     * @see Method#pushBack(Object)
+     */
+    public void pushFront(T data) {
         var temp = new Node<>(data);
         temp.next = head;//вставляем первым наш
         head = temp;//а прошлый первый следующим
         size++;//увеличиваем размер
     }
 
-    public void popFront() {//удалить 1й
+    /**
+     * удалить 1й элемент
+     * @see Method#popBack()
+     */
+    public void popFront() {
         if (head == null) {
             System.out.println("В массиве не было элементов.");
             return;
@@ -39,7 +65,11 @@ public class Method<T> {//класс методов
         size--;//уменьшаем размер
     }
 
-    public void popBack() {//удалить последний
+    /**
+     * удалить последний элемент
+     * @see Method#popFront()
+     */
+    public void popBack() {
         if (size == 0){//если размер 0
             System.out.println("В массиве не было элементов.");
             return;
@@ -58,13 +88,17 @@ public class Method<T> {//класс методов
         size--;//уменьшаем размер
     }
 
-    public void delete(int position) {//удалить
-        if (position < 0 || position > size - 1){//если за границей массива
+    /**
+     * удаление элемента
+     * @param position место, с которого нужно удалить элемент
+     */
+    public void delete(int position) {
+        if (position < 0 || position > size - 1){//если за границей списка
             System.out.println("Вышли за границу массива.");
             return;
         }
         else if (position == 0) popFront();//если пользователь ввел 1й элемент удаляем через popfront
-        else if (position == size - 1) popBack();//ессли последний popback
+        else if (position == size - 1) popBack();//если последний popback
         else {//иначе
             var Pos = 0;
             var h = head;
@@ -77,8 +111,13 @@ public class Method<T> {//класс методов
         }
     }
 
+    /**
+     * Вставка элемента
+     * @param position место, на которое нужно вставить элемент
+     * @param data значение элемента массива
+     */
     public void insert(int position, T data) {//вставить
-        if (position < 0 || position > size){//если за границей массива
+        if (position < 0 || position > size){//если за границей списка
             System.out.println("Вышли за границу массива.");
             return;
         }
@@ -97,8 +136,16 @@ public class Method<T> {//класс методов
         }
     }
 
-    public T get(int position) {//получить элемент
-        if (position < 0 || position > size - 1) throw new IndexOutOfBoundsException();//если вышли за рамки выводим ошибку
+    /**
+     * получить значение элемента на какой то позиции
+     * @param position позиция с которой нужно получить элемент
+     * @return возвращает значение элемента
+     */
+    public T get(int position) {
+        if (position < 0 || position > size - 1){
+            System.out.println("Вышли за границу массива.");
+            throw new IndexOutOfBoundsException();
+        }//если вышли за рамки выводим ошибку
         var Pos = 0;
         var h = head;
         while (position != Pos) {//пока не дошли счетчиком до нужной позиции
@@ -108,6 +155,9 @@ public class Method<T> {//класс методов
         return h.data;//возвращаем значение элемента
     }
 
+    /**
+     * Печать списка
+     */
     public void printList() {//печать
         if (size == 0) {//если размер=0
             System.out.println("Список пуст.");
@@ -122,10 +172,18 @@ public class Method<T> {//класс методов
         System.out.println();
     }
 
+    /**
+     * получить размер списка
+     * @return возвращает размер списка
+     */
     public int getSize() {//получить размер
         return size;
     }
 
+    /**
+     * переопределение строки
+     * @return возвращает строку
+     */
     @Override//показывает что мы собираемся переопределять метод базового класса
     public String toString() {
         var sb = new StringBuilder("");
