@@ -40,41 +40,68 @@ public class Main //главный мейн
                     break;
                 }
                 case 3://удалить с конца
-                {
+                {try {
                     list.popBack();//удаляем
                     list.printList();//печатаем
+                } catch (Exception ex)
+                {
+                    System.out.println(ex.getMessage());
+                }
                     break;
                 }
                 case 4: //удалить с начала
                 {
+                    try {
                     list.popFront();//удаляем
                     list.printList();//печатаем
+                }
+                catch (Exception ex)
+                {
+                    System.out.println(ex.getMessage());
+                }
                     break;
                 }
                 case 5: //добавить после
-                {
+                {try{
                     System.out.println("На какую позицию вставить элемент : ");
                     var position = in.nextInt()-1;//запоминаем позицию
                     System.out.println("Введите значение : ");
                     var value = in.nextInt();//запоминаем элемент
                     list.insert(position, value);//вставляем
                     list.printList();//печатаем
+                }
+                catch (Exception ex)
+                {
+                    System.out.println(ex.getMessage());
+                }
                     break;
                 }
                 case 6: //удаление внутри
-                {
+                {try {
+
+
                     System.out.println("Какой по счету элемент удалить : ");
-                    var position = in.nextInt()-1;//сохраняем позицию
+                    var position = in.nextInt() - 1;//сохраняем позицию
                     list.delete(position);//удаляем элемент на этой позиции
                     list.printList();//печатаем
+                }
+                catch (Exception ex)
+                {
+                    System.out.println(ex.getMessage());
+                }
                     break;
                 }
                 case 7://получение элемента
-                {
+                {try {
                     System.out.println("Значение какого элемента вы хотите получить : ");
-                    var position = in.nextInt()-1;//запоминаем позицию
+                    var position = in.nextInt() - 1;//запоминаем позицию
                     System.out.println(list.get(position));//печатаем элемент на этой позиции
                     list.printList();//печатаем
+                }
+                catch (Exception ex)
+                    {
+                        System.out.println(ex.getMessage());
+                    }
                     break;
                 }
                 case 8: //печать
